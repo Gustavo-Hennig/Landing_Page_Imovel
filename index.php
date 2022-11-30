@@ -1,12 +1,7 @@
 <?php
-include_once('config.php');
-include_once('email.php');
-if (isset($_POST['submit'])) {
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$telefone = $_POST['telefone'];
-	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL); //verifica se o email está correto
-	$result = mysqli_query($conexao, "INSERT INTO formulario(nome,email,telefone) VALUES ('$nome','$email','$telefone')");
+
+//include_once('email.php');
+
 /*	if($result){
 		$obj_email=new Email();
 		$obj_email->remetente_nome="$nome";
@@ -17,7 +12,7 @@ if (isset($_POST['submit'])) {
 		$obj_email->mensagem_HTML="Foi realizado um novo cadastro no site";
 		$obj_email->enviar();
 	}*/
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,7 +56,7 @@ if (isset($_POST['submit'])) {
 			</div>
 			<div class="form-container">
 				<h2>PODE ACREDITAR, POR DENTRO É AINDA MAIS BONITO.</h2>
-				<form action="index.php" method="POST" onSubmit="alert('Dados enviados com Sucesso!')">
+				<form action="insere.php" method="POST" onSubmit="alert('Dados enviados com Sucesso!')">
 					<div class="form-wraper">
 						<p>Nome Completo</p>
 						<input type="text" name="nome" required placeholder="Nome">
@@ -82,7 +77,10 @@ if (isset($_POST['submit'])) {
 
 					<div class="form-wraper">
 						<input type="submit" name="submit" id="submit" value="Enviar">
+						<?php
 					
+						?>
+
 					</div>
 					<!--form-wraper-->
 					<div class="form-wraper">
