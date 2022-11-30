@@ -1,10 +1,22 @@
 <?php
 include_once('config.php');
+include_once('email.php');
 if (isset($_POST['submit'])) {
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
 	$telefone = $_POST['telefone'];
+	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL); //verifica se o email está correto
 	$result = mysqli_query($conexao, "INSERT INTO formulario(nome,email,telefone) VALUES ('$nome','$email','$telefone')");
+/*	if($result){
+		$obj_email=new Email();
+		$obj_email->remetente_nome="$nome";
+		$obj_email->remetente_email="$email";
+		$obj_email->responder_para="Julio";
+		$obj_email->email_destinatario="julio.hippler@gmail.com";
+		$obj_email->assunto="Novo Cadastro no site";
+		$obj_email->mensagem_HTML="Foi realizado um novo cadastro no site";
+		$obj_email->enviar();
+	}*/
 }
 ?>
 <!DOCTYPE html>
@@ -22,9 +34,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-
 	<header>
-
 		<div class="container">
 			<div>
 				<div class="logo-1"></div>
